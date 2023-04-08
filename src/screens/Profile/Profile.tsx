@@ -2,7 +2,7 @@ import React from 'react';
 import {StyleSheet, View, TouchableOpacity} from 'react-native';
 import {Button, Text} from 'react-native-paper';
 import {useDispatch} from 'react-redux';
-import {Logout} from '../../redux/actions';
+import {Logout} from '../../redux/actions/actions';
 import MyHeader from '../../components/molecules/MyHeader';
 import BottomTab from '../../components/molecules/BottomTab';
 import ImagePicker from 'react-native-image-picker';
@@ -114,7 +114,7 @@ const style = StyleSheet.create({
       height: 4,
     },
     shadowOpacity: 0.8,
-    shadowRadius: 3,  
+    shadowRadius: 3,
   },
   profileStyle: {
     backgroundColor: '#ECF2FF',
