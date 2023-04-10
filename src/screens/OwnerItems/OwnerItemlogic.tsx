@@ -3,10 +3,18 @@ import {View, Text, Image, TouchableOpacity} from 'react-native';
 import Ownerstyles from './OwnerStyles';
 import {ScrollView, TextInput} from 'react-native-gesture-handler';
 import DropdownMenu from '../../components/atoms/Dropdown';
-import styles from '../Signup/Signupstyle';
-import Typeselection from '../../components/atoms/Typeselection';
+import Mainbutton from '../../components/atoms/Mainbutton';
+import DropdownComponent from '../../components/atoms/Eventselection';
+import TypeSelction from '../../components/atoms/TypeSelection';
+import OutfitDropdown from '../../components/atoms/OutfitDropdown';
+import {useNavigation} from '@react-navigation/native';
+import OwnerImage from '../OwnerImage/OwnerImage';
 
-function Additems() {
+const Additems = () => {
+  const navigation = useNavigation();
+  const handleItems = () => {
+    navigation.navigate(OwnerImage);
+  };
   return (
     <ScrollView style={Ownerstyles.mainContainer}>
       <Text style={Ownerstyles.Titletext}> Add Items </Text>
@@ -24,13 +32,16 @@ function Additems() {
           <TextInput style={Ownerstyles.Descriptionfield} />
           <DropdownMenu />
           <Text style={Ownerstyles.Itemname}>Select Type</Text>
-          <Typeselection />
+          <TypeSelction />
           <Text style={Ownerstyles.Itemname}>Select Event</Text>
-          <DropdownMenu />
+          <DropdownComponent />
+          <Text style={Ownerstyles.Itemname}>Select Outfit </Text>
+          <OutfitDropdown />
+          <Mainbutton text="Continue" onPress={handleItems} />
         </View>
       </View>
     </ScrollView>
   );
-}
+};
 
 export default Additems;

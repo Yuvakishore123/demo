@@ -1,33 +1,40 @@
 import {StyleSheet} from 'react-native';
 const styles = StyleSheet.create({
   mainContainer: {
-    backgroundColor: '#ECF2FF',
-    height: 800,
-    width: 800,
+    backgroundColor: '#FFF',
+    height: '100%',
+    width: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   container: {
-    width: 300,
-    margin: 26,
+    width: '100%',
+    // margin: 26,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   titleText: {
+    marginTop: 60,
     fontSize: 30,
     fontWeight: '700',
     color: '#3E54AC',
-    margin: 25,
-    marginLeft: 55,
+    // margin: 25,
+    // marginLeft: 55,
   },
   titleTextContainer: {
-    height: 150,
+    // height: 150,
     justifyContent: 'center',
     // flex: 1,
     flexDirection: 'row',
-    display: 'flex',
-    gap: 80,
-    marginLeft: 15,
+    // display: 'flex',
+    // gap: 80,
+    // marginLeft: 15,
+    // backgroundColor: 'green',
+    width: '90%',
   },
   card: {
     backgroundColor: '#3E54AC26',
-    height: 500,
+    // height: 500,
     width: 320,
     padding: 35,
     borderRadius: 15,
@@ -109,6 +116,7 @@ const styles = StyleSheet.create({
   image: {
     width: 139,
     height: 165,
+    marginLeft: 50,
     // paddingRight: 30,
   },
   emailText: {
@@ -122,10 +130,11 @@ const styles = StyleSheet.create({
   errorTxt: {
     fontSize: 12,
     color: 'red',
-    // position: 'absolute',
-    // bottom: -18, // Adjust this value to position the error text as desired
-    // width: '100%', // Make sure the error text spans the full width of the card container
-    // textAlign: 'center', // Center the error text horizontally within the card container
+  },
+  buttonContainer: {
+    justifyContent: 'center',
+    flexDirection: 'column',
+    alignItems: 'center',
   },
 });
 export default styles;

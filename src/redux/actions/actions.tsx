@@ -26,16 +26,25 @@ export const Login = (email: string, password: string) => {
         type: LOGIN_REQUEST,
       });
       const response = await axios.post(
-        'http://e15c-180-151-121-182.ngrok.io/api/login',
+        'http://c252-106-51-70-135.ngrok.io/api/login',
         {
           email: email,
           password: password,
         },
+        {
+          headers: {
+            // Authorization: `Bearer ${await AsyncStorage.getItem(
+            //   'access_token',
+            // )}`,
+          },
+        },
       );
       const token = response.headers.access_token;
+      // console.log(token);
       // const Token = JSON.stringify(token);
-      await AsyncStorage.setItem('token', token);
+      await AsyncStorage.getItem('token', token);
       console.log('token stored');
+      console.log(token);
       dispatch({
         type: LOGIN_SUCCESS,
         payload: token,
@@ -58,7 +67,7 @@ export const SignupAndLogin = (
 ) => {
   return async (dispatch: Dispatch) => {
     axios
-      .post('http://dfb1-106-51-70-135.ngrok-free.app/user/signup', {
+      .post('http://c252-106-51-70-135.ngrok.io/api/user/sav', {
         firstName,
         lastName,
         email,

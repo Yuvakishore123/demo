@@ -15,7 +15,23 @@ import Additems from './src/screens/OwnerItems/OwnerItemlogic';
 import OwnerItems from './src/screens/OwnerItems/OwnerItems';
 import DropdownMenu from './src/components/atoms/Dropdown';
 import OwnerHome from './src/screens/Ownerhome/Ownerhome';
+import Mainbutton from './src/components/atoms/Mainbutton';
+import DropdownComponent from './src/components/atoms/Eventselection';
+import OwnerImage from './src/screens/OwnerImage/OwnerImage';
+import Imagepicker, { UploadImage } from './src/components/atoms/Imagepicker';
+import AddImages from './src/components/atoms/AddImages';
+import OpenPicker from './src/components/atoms/Openpicker';
 const Stack = createSharedElementStackNavigator();
+
+const OwnerStack = () => {
+  return (
+    <Stack.Navigator screenOptions={{headerShown: false}}>
+      <Stack.Screen name="OwnerItems" component={OwnerItems} />
+      <Stack.Screen name="OwnerImage" component={OwnerImage} />
+      <Stack.Screen name="OwnerHome" component={OwnerHome} />
+    </Stack.Navigator>
+  );
+};
 
 const MyStack = () => {
   return (
@@ -35,6 +51,7 @@ const AuthStack = () => {
         headerShown: false,
       }}>
       <Stack.Screen name="LoginScreen" component={LoginScreen} />
+      {/* <Stack.Screen name="OwnerImage" component={OwnerImage} /> */}
       <Stack.Screen name="SignupScreen" component={SignupScreen} />
     </Stack.Navigator>
   );
@@ -66,7 +83,7 @@ const RootNavigation = () => {
   return (
     <NavigationContainer>
       <StatusBar backgroundColor="black" barStyle="light-content" />
-      {token === null ? <AuthStack /> : <MyStack />}
+      {token === null ? <AuthStack /> : <OwnerStack />}
     </NavigationContainer>
   );
 };
@@ -74,7 +91,7 @@ const RootNavigation = () => {
 const App = () => {
   return (
     <Provider store={store}>
-      <OwnerItems />
+      <RootNavigation />
     </Provider>
   );
 };

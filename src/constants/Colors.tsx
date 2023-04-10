@@ -1,4 +1,5 @@
 export default {
+  main: '#ECF2FF',
   primary: '#f54',
   primaryDark: '#f54',
   accent: '#7fc',

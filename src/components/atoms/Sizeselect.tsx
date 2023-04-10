@@ -9,43 +9,38 @@ import {object} from 'yup';
 // import AntDesign from '@expo/vector-icons/AntDesign';
 
 const data = [
-  {label: 'Item 1', value: '1'},
-  {label: 'Item 2', value: '2'},
-  {label: 'Item 3', value: '3'},
-  {label: 'Item 4', value: '4'},
-  {label: 'Item 5', value: '5'},
-  {label: 'Item 6', value: '6'},
-  {label: 'Item 7', value: '7'},
-  {label: 'Item 8', value: '8'},
+  {label: 'Small', value: '1'},
+  {label: 'Large', value: '2'},
+  {label: 'Extra Large', value: '3'},
 ];
 
-const DropdownComponent = () => {
-  const [CategoriesData, setCategoriesData] = useState([]);
+const Sizeselection = () => {
+  //   const [CategoriesData, setCategoriesData] = useState([]);
   const [value, setValue] = useState(null);
   const [isFocus, setIsFocus] = useState(false);
-  useEffect(() => {
-    var config = {
-      method: 'get',
-      url: 'https://fakestoreapi.com/products/categories',
-    };
-    axios(config)
-      .then(response => {
-        console.log(JSON.stringify(response.data));
-        var count = Object.keys(response.data).length;
-        let CategoriesArray = [];
-        for (var i = 0; i < count; i++) {
-          CategoriesArray.push({
-            value: response.data[i],
-            label: response.data[i],
-          });
-        }
-        setCategoriesData(CategoriesArray);
-      })
+  //   useEffect(() => {
+  //     var config = {
+  //       method: 'get',
+  //       url: 'https://fakestoreapi.com/products/categories',
+  //     };
+  //     axios(config)
+  //       .then(response => {
+  //         console.log(JSON.stringify(response.data));
+  //         var count = Object.keys(response.data).length;
+  //         let CategoriesArray = [];
+  //         for (var i = 0; i < count; i++) {
+  //           CategoriesArray.push({
+  //             value: response.data[i],
+  //             label: response.data[i],
+  //           });
+  //         }
+  //         setCategoriesData(CategoriesArray);
+  //       })
 
-      .catch(error => {
-        console.log(error);
-      });
-  }, []);
+  //       .catch(error => {
+  //         console.log(error);
+  //       });
+  //   }, []);
 
   return (
     <View style={Ownerstyles.scrollView}>
@@ -56,7 +51,7 @@ const DropdownComponent = () => {
           selectedTextStyle={styles.selectedTextStyle}
           inputSearchStyle={styles.inputSearchStyle}
           iconStyle={styles.iconStyle}
-          data={CategoriesData}
+          data={data}
           search
           maxHeight={400}
           labelField="label"
@@ -76,7 +71,7 @@ const DropdownComponent = () => {
   );
 };
 
-export default DropdownComponent;
+export default Sizeselection;
 
 const styles = StyleSheet.create({
   container: {

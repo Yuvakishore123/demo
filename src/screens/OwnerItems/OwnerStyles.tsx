@@ -22,6 +22,12 @@ const Ownerstyles = StyleSheet.create({
     marginRight: 90,
     marginTop: 20,
   },
+  scrollView: {
+    height: 100,
+    width: 200,
+
+    justifyContent: 'center',
+  },
   Itemname: {
     color: '#3E54AC',
     fontSize: 18,
@@ -43,7 +49,7 @@ const Ownerstyles = StyleSheet.create({
   scroll: {
     marginLeft: 54,
     width: 280,
-    height: 800,
+    height: '100%',
     // alignItems : 'center',
   },
   Descriptionfield: {
@@ -59,7 +65,7 @@ const Ownerstyles = StyleSheet.create({
   },
   Scrollcontainer: {
     // height: 500,
-    width: 900,
+    // width: 900,
   },
   genderText: {
     fontSize: 18,
@@ -85,6 +91,18 @@ const Ownerstyles = StyleSheet.create({
     borderRadius: 10,
     // elevation: 3,
     // justifyContent: 'center',
+    alignItems: 'center',
+  },
+  dropdown: {
+    backgroundColor: '#FFFFFF',
+    marginTop: 15,
+    borderRadius: 10,
+    height: 48,
+    width: 250,
+    alignItems: 'center',
+  },
+  dropConatiner: {
+    height: '100%',
     alignItems: 'center',
   },
 });

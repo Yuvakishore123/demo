@@ -19,7 +19,7 @@ const data = [
   {label: 'Item 8', value: '8'},
 ];
 
-const DropdownComponent = () => {
+const OutfitDropdown = () => {
   const [CategoriesData, setCategoriesData] = useState([]);
   const [value, setValue] = useState(null);
   const [isFocus, setIsFocus] = useState(false);
@@ -76,7 +76,7 @@ const DropdownComponent = () => {
   );
 };
 
-export default DropdownComponent;
+export default OutfitDropdown;
 
 const styles = StyleSheet.create({
   container: {

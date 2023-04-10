@@ -556,6 +556,7 @@ import {Formik} from 'formik';
 import {Alert} from 'react-native';
 import axios from 'axios';
 import {SignupAndLogin} from '../../redux/actions';
+import {ScrollView} from 'react-native-gesture-handler';
 
 const SignUpSchema = Yup.object().shape({
   firstName: Yup.string().required('Required'),
@@ -580,7 +581,7 @@ export default function SignUpScreen() {
   const handleSignupfun = async () => {
     try {
       const response = await axios.post(
-        'http://dfb1-106-51-70-135.ngrok-free.app/user/signup',
+        'http://c252-106-51-70-135.ngrok.io/api/user/save',
         {
           firstName,
           lastName,
@@ -639,117 +640,122 @@ export default function SignUpScreen() {
   };
 
   return (
-    <View style={Styles.mainContainer}>
-      <View style={Styles.container}>
-        <View style={Styles.titleTextContainer}>
-          <Text style={Styles.titleText}>Sign Up</Text>
-          <Image
-            style={Styles.image}
-            source={require('../../../Assets/Signup.png')}
-          />
-        </View>
-        <View style={Styles.card}>
-          <View>
-            <Text style={Styles.cardText}>First Name</Text>
-          </View>
-          <View>
-            <TextInput
-              style={Styles.textinput}
-              placeholder="Enter First Name"
-              placeholderTextColor={'#3E54AC'}
-              value={firstName}
-              autoCapitalize="words"
-              onChangeText={handleFirstNameChange}
-              onBlur={() => handleBlur('firstName')}
+    <ScrollView>
+      <View style={Styles.mainContainer}>
+        <View style={Styles.container}>
+          <View style={Styles.titleTextContainer}>
+            <Text style={Styles.titleText}>Sign Up</Text>
+            <Image
+              style={Styles.image}
+              source={require('../../../Assets/Signup.png')}
             />
-            {formik.touched.firstName && formik.errors.firstName && (
-              <Text style={Styles.errorText}>{formik.errors.firstName}</Text>
-            )}
           </View>
-          <View>
-            <Text style={Styles.cardText}>Last Name</Text>
+          <View style={Styles.card}>
+            <View>
+              <Text style={Styles.cardText}>First Name</Text>
+            </View>
+            <View>
+              <TextInput
+                style={Styles.textinput}
+                placeholder="Enter First Name"
+                placeholderTextColor={'#3E54AC'}
+                value={firstName}
+                autoCapitalize="words"
+                onChangeText={handleFirstNameChange}
+                onBlur={() => handleBlur('firstName')}
+              />
+              {formik.touched.firstName && formik.errors.firstName && (
+                <Text style={Styles.errorText}>{formik.errors.firstName}</Text>
+              )}
+            </View>
+            <View>
+              <Text style={Styles.cardText}>Last Name</Text>
+            </View>
+            <View>
+              <TextInput
+                style={Styles.textinput}
+                placeholder="Enter Last Name"
+                placeholderTextColor={'#3E54AC'}
+                value={lastName}
+                autoCapitalize="words"
+                onChangeText={handleLastNameChange}
+                onBlur={() => handleBlur('lastName')}
+              />
+              {formik.touched.lastName && formik.errors.lastName && (
+                <Text style={Styles.errorText}>{formik.errors.lastName}</Text>
+              )}
+            </View>
+            <View>
+              <Text style={Styles.cardText}>Email</Text>
+            </View>
+            <View>
+              <TextInput
+                style={Styles.textinput}
+                placeholder="Enter Email"
+                placeholderTextColor={'#3E54AC'}
+                value={email}
+                autoCapitalize="none"
+                onChangeText={handleEmailChange}
+                onBlur={() => handleBlur('email')}
+              />
+              {formik.touched.email && formik.errors.email && (
+                <Text style={Styles.errorText}>{formik.errors.email}</Text>
+              )}
+            </View>
+            <View>
+              <Text style={Styles.cardText}>Phone Number</Text>
+            </View>
+            <View>
+              <TextInput
+                style={Styles.textinput}
+                placeholder="Enter Phone number"
+                placeholderTextColor={'#3E54AC'}
+                value={phoneNumber}
+                // secureTextEntry={true}
+                onChangeText={handlephoneNumber}
+                onBlur={() => handleBlur('phoneNumber')}
+              />
+              {formik.touched.phoneNumber && formik.errors.phoneNumber && (
+                <Text style={Styles.errorText}>
+                  {formik.errors.phoneNumber}
+                </Text>
+              )}
+            </View>
+            <View>
+              <Text style={Styles.cardText}>Password</Text>
+            </View>
+            <View>
+              <TextInput
+                style={Styles.textinput}
+                placeholder="Enter password"
+                placeholderTextColor={'#3E54AC'}
+                value={password}
+                secureTextEntry={true}
+                onChangeText={handlePasswordChange}
+                onBlur={() => handleBlur('password')}
+              />
+              {formik.touched.password && formik.errors.password && (
+                <Text style={Styles.errorText}>{formik.errors.password}</Text>
+              )}
+            </View>
           </View>
-          <View>
-            <TextInput
-              style={Styles.textinput}
-              placeholder="Enter Last Name"
-              placeholderTextColor={'#3E54AC'}
-              value={lastName}
-              autoCapitalize="words"
-              onChangeText={handleLastNameChange}
-              onBlur={() => handleBlur('lastName')}
-            />
-            {formik.touched.lastName && formik.errors.lastName && (
-              <Text style={Styles.errorText}>{formik.errors.lastName}</Text>
-            )}
+          <View style={Styles.buttonContainer}>
+            <TouchableOpacity
+              onPress={handleSignupfun}
+              style={Styles.touchablebtn}>
+              <Text style={Styles.buttonText}>Sign Up</Text>
+            </TouchableOpacity>
+            <Text style={Styles.signupText}>Already have an account?</Text>
+            <TouchableOpacity
+              onPress={() => navigation.navigate('LoginScreen')}>
+              <Text style={Styles.signupButton}> Sign in</Text>
+            </TouchableOpacity>
           </View>
-          <View>
-            <Text style={Styles.cardText}>Email</Text>
-          </View>
-          <View>
-            <TextInput
-              style={Styles.textinput}
-              placeholder="Enter Email"
-              placeholderTextColor={'#3E54AC'}
-              value={email}
-              autoCapitalize="none"
-              onChangeText={handleEmailChange}
-              onBlur={() => handleBlur('email')}
-            />
-            {formik.touched.email && formik.errors.email && (
-              <Text style={Styles.errorText}>{formik.errors.email}</Text>
-            )}
-          </View>
-          <View>
-            <Text style={Styles.cardText}>Phone Number</Text>
-          </View>
-          <View>
-            <TextInput
-              style={Styles.textinput}
-              placeholder="Enter Phone number"
-              placeholderTextColor={'#3E54AC'}
-              value={phoneNumber}
-              // secureTextEntry={true}
-              onChangeText={handlephoneNumber}
-              onBlur={() => handleBlur('phoneNumber')}
-            />
-            {formik.touched.phoneNumber && formik.errors.phoneNumber && (
-              <Text style={Styles.errorText}>{formik.errors.phoneNumber}</Text>
-            )}
-          </View>
-          <View>
-            <Text style={Styles.cardText}>Password</Text>
-          </View>
-          <View>
-            <TextInput
-              style={Styles.textinput}
-              placeholder="Enter password"
-              placeholderTextColor={'#3E54AC'}
-              value={password}
-              secureTextEntry={true}
-              onChangeText={handlePasswordChange}
-              onBlur={() => handleBlur('password')}
-            />
-            {formik.touched.password && formik.errors.password && (
-              <Text style={Styles.errorText}>{formik.errors.password}</Text>
-            )}
-          </View>
-        </View>
-        <View style={Styles.buttonContainer}>
-          <TouchableOpacity style={Styles.button}>
-            <Text onPress={handleSignupfun} style={Styles.buttonText}>
-              Sign Up
-            </Text>
-          </TouchableOpacity>
-        </View>
-        <View style={Styles.signupTextCont}>
-          <Text style={Styles.signupText}>Already have an account?</Text>
-          <TouchableOpacity onPress={() => navigation.navigate('LoginScreen')}>
-            <Text style={Styles.signupButton}> Sign in</Text>
-          </TouchableOpacity>
+          {/* <View style={Styles.signupTextCont}> */}
+          {/* </View> */}
         </View>
       </View>
-    </View>
+    </ScrollView>
   );
 }
 
