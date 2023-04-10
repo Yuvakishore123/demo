@@ -26,22 +26,11 @@ export const Login = (email: string, password: string) => {
         type: LOGIN_REQUEST,
       });
       const response = await axios.post(
-<<<<<<< HEAD
-        'https://64267853556bad2a5b505aec.mockapi.io/login',
-=======
         'http://c252-106-51-70-135.ngrok.io/api/login',
->>>>>>> 872683b970244501c55e2cc37ee28b45a49a9520
         {
           email: email,
           password: password,
         },
-<<<<<<< HEAD
-      );
-      const token = response.data.token;
-      const Token = JSON.stringify(token);
-      await AsyncStorage.setItem('token', Token);
-      console.log('token stored');
-=======
         {
           headers: {
             // Authorization: `Bearer ${await AsyncStorage.getItem(
@@ -56,7 +45,6 @@ export const Login = (email: string, password: string) => {
       await AsyncStorage.getItem('token', token);
       console.log('token stored');
       console.log(token);
->>>>>>> 872683b970244501c55e2cc37ee28b45a49a9520
       dispatch({
         type: LOGIN_SUCCESS,
         payload: token,
@@ -79,11 +67,7 @@ export const SignupAndLogin = (
 ) => {
   return async (dispatch: Dispatch) => {
     axios
-<<<<<<< HEAD
-      .post('http://f21e-106-51-81-14.ngrok.io/user/signup', {
-=======
       .post('http://c252-106-51-70-135.ngrok.io/api/user/sav', {
->>>>>>> 872683b970244501c55e2cc37ee28b45a49a9520
         firstName,
         lastName,
         email,

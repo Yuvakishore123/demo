@@ -15,7 +15,7 @@ const Additems = () => {
 //     navigation.navigate(OwnerImage);
 //   };
   return (
-    <ScrollView >
+    <ScrollView>
       <Text style={Ownerstyles.Titletext}> Add Items </Text>
       <View>
         <Image
