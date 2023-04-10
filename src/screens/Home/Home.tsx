@@ -3,6 +3,7 @@ import React from 'react';
 import MyHeader from '../../components/molecules/MyHeader';
 import BottomTab from '../../components/molecules/BottomTab';
 import HomeLogic from './HomeLogic';
+import styles from './Homestyle';
 export default function Home({route, navigation}: Props) {
   return (
     <View style={{flex: 1}}>
@@ -16,24 +17,3 @@ export default function Home({route, navigation}: Props) {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    padding: 16,
-    backgroundColor: '#ECF2FF',
-  },
-  header: {
-    borderBottomRightRadius: 16,
-    borderBottomLeftRadius: 16,
-    marginHorizontal: 4,
-  },
-  bottomTabWrapper: {
-    position: 'absolute',
-    bottom: 0,
-    width: '100%',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-  },
-});

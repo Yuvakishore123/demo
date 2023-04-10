@@ -114,7 +114,7 @@ const style = StyleSheet.create({
       height: 4,
     },
     shadowOpacity: 0.8,
-    shadowRadius: 3,  
+    shadowRadius: 3,
   },
   profileStyle: {
     backgroundColor: '#ECF2FF',

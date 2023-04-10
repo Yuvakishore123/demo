@@ -20,9 +20,10 @@ function Homelogic() {
     <ScrollView style={styles.container}>
       {products.map(product => (
         <TouchableOpacity key={product.id} style={styles.card}>
-          <Image source={{uri: product.imageUrl}} style={styles.cardImage} />
+          <Image source={{uri: product.image}} style={styles.cardImage} />
           <View style={styles.cardTextContainer}>
-            <Text style={styles.cardText}>{product.categoryName}</Text>
+            <Text style={styles.cardText}>{product.name}</Text>
+            {/* <Text style={styles.cardText}>{product.description}</Text> */}
           </View>
         </TouchableOpacity>
       ))}
