@@ -3,9 +3,9 @@ import {
   combineReducers,
   applyMiddleware,
 } from 'redux';
-import ProductSlice from './slice/productSlice';
+import ProductSlice from '../slice/productSlice';
 import thunk from 'redux-thunk';
-import Reducers from './reducers';
+import Reducers from '../reducers/reducers';
 const RootReducers = combineReducers({
   // reducers
   Reducers,

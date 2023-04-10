@@ -4,6 +4,7 @@ export default {
   accent: '#7fc',
   blue: '#5555ff',
   white: '#fff',
+  main: '#ECF2FF',
   iconscolor: '#3E54AC',
   black: '#000',
   gray: '#666',

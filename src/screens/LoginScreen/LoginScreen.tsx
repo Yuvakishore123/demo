@@ -1,70 +1,87 @@
 import React, {useState} from 'react';
+import {useFormik} from 'formik';
+import * as Yup from 'yup';
 import {
-  StyleSheet,
+  Stylesheet,
   View,
   TextInput,
   Text,
   TouchableOpacity,
+  Image,
 } from 'react-native';
 import {useDispatch} from 'react-redux';
 import Colors from '../../constants/Colors';
-import {Login} from '../../redux/actions';
-
+import {Login} from '../../redux/actions/actions';
+import SignupScreen from '../Signup/Signup';
+import {useNavigation} from '@react-navigation/native';
+import Styles from './LoginStyle';
+import styles from '../Signup/Signupstyle';
+const LoginSchema = Yup.object().shape({
+  email: Yup.string().email('Invalid email').required('Required'),
+  password: Yup.string()
+    .min(8)
+    .required('Please enter password')
+    .matches(
+      /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/,
+      'Must contain * characters and uppercase letters',
+    ),
+});
 export default function LoginScreen() {
-  const [PhoneNumber, setPhoneNumber] = useState<string>('');
+  const navigation = useNavigation();
+  const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
-  const [PhoneNumbererror, setPhoneNumbererror] = useState<string>('');
-  const [passworderror, setPassworderror] = useState<string>('');
+  const [passwordError, setPasswordError] = useState<string>('');
   const dispatch = useDispatch();
-  const submit = () => {
-    var emailValid = false;
-    if (PhoneNumber.length == 0) {
-      setPhoneNumbererror('Email is required');
-    } else if (PhoneNumber.length < 6) {
-      setPhoneNumbererror('Email should be minimum 6 characters');
-    } else if (PhoneNumber.indexOf(' ') >= 0) {
-      setPhoneNumbererror('Email cannot contain spaces');
-    } else {
-      setPhoneNumbererror('');
-      emailValid = true;
-    }
-    var passwordValid = false;
-    if (password.length == 0) {
-      setPassworderror('Password is required');
-    } else if (password.length < 6) {
-      setPassworderror('Password should be minimum 6 characters');
-    } else if (password.indexOf(' ') >= 0) {
-      setPassworderror('Password cannot contain spaces');
-    } else {
-      setPassworderror('');
-      passwordValid = true;
-    }
-    if (emailValid && passwordValid) {
-      dispatch(Login(PhoneNumber, password));
-    }
+  const handleLogin = () => {
+    dispatch(Login(email, password));
+  };
+  const formik = useFormik({
+    initialValues: {
+      email: '',
+      password: '',
+    },
+    validationSchema: LoginSchema,
+    onSubmit: handleLogin,
+  });
+  const handleEmailChange = (value: string) => {
+    setEmail(value);
+    formik.setFieldValue('email', value);
+  };
+  const handlePasswordChange = (value: string) => {
+    setPassword(value);
+    formik.setFieldValue('password', value);
+  };
+  const handleBlur = (field: string) => {
+    formik.setFieldTouched(field);
   };
   return (
     <View style={Styles.mainContainer}>
       <View style={Styles.container}>
         <View style={Styles.titleTextContainer}>
           <Text style={Styles.titleText}>Login</Text>
+          <Image
+            style={Styles.image}
+            source={require('../../../Assets/LoginImage.png')}
+          />
         </View>
         <View style={Styles.card}>
           <View>
-            <Text style={Styles.cardText}>Phone Number</Text>
+            <Text style={Styles.cardText}> Email </Text>
           </View>
           <View>
             <TextInput
               style={Styles.textinput}
-              placeholder="Enter PhoneNumber"
+              placeholder="Enter Email"
               placeholderTextColor={'#3E54AC'}
-              value={PhoneNumber}
-              onChangeText={text => setPhoneNumber(text)}
+              value={email}
+              autoCapitalize="none"
+              onChangeText={handleEmailChange}
+              onBlur={() => handleBlur('email')}
             />
+            {formik.touched.email && formik.errors.email && (
+              <Text style={Styles.errorText}>{formik.errors.email} </Text>
+            )}
           </View>
-          {PhoneNumbererror.length > 0 && (
-            <Text style={{marginTop: 5, color: 'red'}}>{PhoneNumbererror}</Text>
-          )}
           <View>
             <Text style={Styles.cardText}>Password</Text>
             <TextInput
@@ -73,166 +90,29 @@ export default function LoginScreen() {
               placeholderTextColor={'#3E54AC'}
               value={password}
               secureTextEntry={true}
-              onChangeText={text => setPassword(text)}
+              onChangeText={handlePasswordChange}
+              onBlur={() => handleBlur('password')}
             />
+            {formik.touched.password && formik.errors.password && (
+              <Text style={Styles.errorText}>{formik.errors.password} </Text>
+            )}
           </View>
-          {passworderror.length > 0 && (
-            <Text style={{marginTop: 5, color: 'red'}}>{passworderror}</Text>
-          )}
+          {passwordError.length > 0 && <Text>{passwordError}</Text>}
         </View>
         <View style={Styles.touchablebtnContainer}>
-          <TouchableOpacity onPress={submit} style={Styles.touchablebtn}>
-            <Text style={Styles.subTitileText}>Login</Text>
+          <TouchableOpacity
+            style={Styles.touchablebtn}
+            onPress={formik.handleSubmit}>
+            <Text style={Styles.touchableText}>Login</Text>
           </TouchableOpacity>
-          <View style={Styles.signuptext}>
-            <Text style={Styles.dontText}>
-              Don't have Account ?<Text style={Styles.sign}> Signup</Text>
-            </Text>
-            <Text style={Styles.orText}>or</Text>
-            <Text style={Styles.guest}>Continue As Guest</Text>
-          </View>
+        </View>
+        <View style={Styles.sign}>
+          <Text style={Styles.signuptext}>Don't have an account? </Text>
+          <TouchableOpacity onPress={() => navigation.navigate('SignupScreen')}>
+            <Text style={Styles.signuptext}>Sign up</Text>
+          </TouchableOpacity>
         </View>
       </View>
     </View>
-     // <View style={styles.container}>
-    //   <Image
-    //     style={StyleSheet.absoluteFillObject}
-    //     source={{uri: loginBg}}
-    //     blurRadius={10}
-    //   />
-    //   <Text style={styles.title}>Login</Text>
-    //   <Surface style={styles.box}>
-    //     <View>
-    //       <TextInput
-    //         label="PhoneNumber"
-    //         mode="outlined"
-    //         value={PhoneNumber}
-    //         onChangeText={text => setPhoneNumber(text)}
-    //       />
-    //       <TextInput
-    //         label="Password"
-    //         mode="outlined"
-    //         value={password}
-    //         onChangeText={text => setPassword(text)}
-    //       />
-    //     </View>
-    //     <Button
-    //       mode="contained"
-    //       color={Colors.blue}
-    //       style={{marginTop: 20}}
-    //       onPress={submit}>
-    //       Submit
-    //     </Button>
-    //   </Surface>
-    // </View>
   );
 }
-
-const Styles = StyleSheet.create({
-  mainContainer: {
-    backgroundColor: '#ECF2FF',
-    height: 800,
-    width: 400,
-  },
-  container: {
-    // justifyContent: 'center',
-    // alignItems: 'center',
-    width: 300,
-    margin: 26,
-    // shadowColor: '#3E54AC',
-    // shadowOffset: { width: 0, height: 2 },
-    // shadowOpacity:15,
-    // shadowRadius: 10,
-    // elevation:0.1,
-  },
-  titleText: {
-    fontSize: 30,
-    fontWeight: '700',
-    color: '#3E54AC',
-    margin: 15,
-  },
-  titleTextContainer: {
-    height: 150,
-    justifyContent: 'center',
-  },
-  card: {
-    backgroundColor: '#3E54AC26',
-    height: 300,
-    width: 320,
-    padding: 30,
-    borderRadius: 10,
-    margin: 15,
-    justifyContent: 'center',
-    shadowColor: '#52006A',
-    // elevation: 1,
-  },
-  cardText: {
-    color: '#3E54AC',
-    fontSize: 18,
-    fontWeight: '700',
-  },
-  textinput: {
-    backgroundColor: 'white',
-    marginTop: 10,
-    marginBottom: 10,
-    borderRadius: 10,
-    padding: 10,
-    borderColor: '#3E54AC',
-  },
-  touchableText: {
-    // margin:15,
-    color: 'white',
-    fontSize: 18,
-    fontWeight: '700',
-    justifyContent: 'center',
-  },
-  touchablebtn: {
-    height: 59,
-    width: 309,
-    backgroundColor: '#3E54AC',
-    margin: 15,
-    marginTop: 30,
-    borderRadius: 8,
-    color: '#FFFFFF',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  touchablebtnContainer: {
-    justifyContent: 'center',
-    // alignItems:"center",
-  },
-  subTitileText: {
-    color: '#FFFFFF',
-    fontSize: 20,
-  },
-  signuptext: {
-    marginTop: 20,
-    alignItems: 'center',
-    marginRight: 20,
-    margin: 15,
-  },
-  sign: {
-    color: '#3E54AC',
-    fontSize: 14,
-    opacity: 3,
-  },
-  guest: {
-    color: '#3E54AC',
-    fontSize: 14,
-    marginRight: 15,
-    marginTop: 10,
-    margin: 15,
-  },
-  orText: {
-    // alignItems:"center",
-    // justifyContent:"center"
-    marginLeft: 1,
-    fontSize: 14,
-  },
-  dontText: {
-    margin: 25,
-    marginTop: 5,
-    marginRight: 2,
-    marginBottom: 10,
-  },
-});

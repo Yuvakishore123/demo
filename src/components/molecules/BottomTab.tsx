@@ -38,6 +38,7 @@ const BottomTab = ({navigation}) => {
     routeName !== '' ? navigation.navigate(routeName) : null;
 
   useEffect(() => {
+    console.log('navigation: ', navigation);
     const unsubscribe = navigation.addListener('focus', () => {
       setFocused('home');
     });

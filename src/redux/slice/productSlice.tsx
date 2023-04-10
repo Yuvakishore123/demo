@@ -6,7 +6,7 @@ import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
 // });
 import axios from 'axios';
 export const fetchProducts = createAsyncThunk('fetchProducts', async () => {
-  const res = await axios.get('http://6622-106-51-70-135.ngrok.io/category/list',{});
+  const res = await axios.get('https://fakestoreapi.com/products',{});
   return res.data;
 });
 const ProductSlice = createSlice({
