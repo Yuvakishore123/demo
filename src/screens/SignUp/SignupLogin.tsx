@@ -61,6 +61,7 @@ export default function SignUpScreen() {
     },
     validationSchema: SignUpSchema,
     onSubmit: handleSignupfun,
+    SignupScreen,
   });
   const handleFirstNameChange = (value: string) => {
     setFirstName(value);
@@ -190,8 +191,7 @@ export default function SignUpScreen() {
               <Text style={Styles.buttonText}>Sign Up</Text>
             </TouchableOpacity>
             <Text style={Styles.signupText}>Already have an account?</Text>
-            <TouchableOpacity
-              onPress={() => navigation.navigate('Login')}>
+            <TouchableOpacity onPress={() => navigation.navigate('Login')}>
               <Text style={Styles.signupButton}> Sign in</Text>
             </TouchableOpacity>
           </View>

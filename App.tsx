@@ -4,7 +4,7 @@ import {StatusBar, Text, View} from 'react-native';
 import {createSharedElementStackNavigator} from 'react-navigation-shared-element';
 import LoginScreen from './src/screens/LoginScreen/LoginScreen';
 import {Provider, useDispatch, useSelector} from 'react-redux';
-import {store} from './src/redux/store';
+import {store} from './src/redux/store/store';
 import Profile from './src/screens/Profile/Profile';
 import {ActivityIndicator} from 'react-native-paper';
 import Colors from './src/constants/Colors';
@@ -41,7 +41,7 @@ const OwnerNavigation = () => {
       <OwnerStack />
     </NavigationContainer>
   );
-}
+};
 const AuthStack = () => {
   return (
     <Stack.Navigator

@@ -6,6 +6,8 @@ import {
 import ProductSlice from '../slice/productSlice';
 import thunk from 'redux-thunk';
 import Reducers from '../reducers/reducers';
+import {configureStore} from '@reduxjs/toolkit/dist/configureStore';
+import authReducer from '../reducers/reducers';
 const RootReducers = combineReducers({
   // reducers
   Reducers,
@@ -14,4 +16,3 @@ const RootReducers = combineReducers({
 });
 
 export const store = createStore(RootReducers, applyMiddleware(thunk));
-
