@@ -1,20 +1,20 @@
-import {
-  Button,
-  StyleSheet,
-  Text,
-  View,
-  TouchableOpacity,
-  ScrollView,
-} from 'react-native';
+import {Text, View, TouchableOpacity, ScrollView} from 'react-native';
 import React, {useState} from 'react';
 import style from './OwnerProfilestyle';
 import SwitchAccountButton from '../../components/atoms/SwtichAccountButton';
 import AddImages from '../../components/atoms/AddImages';
 import OwnerBottomTab from '../../components/molecules/OwnerBottomTab';
+import {Logout} from '../../redux/actions/actions';
+import {useDispatch} from 'react-redux';
 type Props = {
   navigation: any;
 };
 const OwnerProfile = ({navigation}: Props) => {
+  const dispatch = useDispatch();
+  const submit = () => {
+    dispatch(Logout());
+  };
+
   return (
     <View style={style.profileStyle}>
       <ScrollView>
@@ -46,7 +46,7 @@ const OwnerProfile = ({navigation}: Props) => {
           </TouchableOpacity>
         </View>
         <View>
-          <TouchableOpacity style={style.btnfield}>
+          <TouchableOpacity onPress={submit} style={style.btnfield}>
             <Text style={style.btntext}>Logout </Text>
           </TouchableOpacity>
         </View>

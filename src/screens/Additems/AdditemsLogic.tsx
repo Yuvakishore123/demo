@@ -7,13 +7,14 @@ import DropdownComponent from '../../components/atoms/EventsDropdown';
 import TypeSelction from '../../components/atoms/TypeDropdown';
 import OutfitDropdown from '../../components/atoms/OutfitDropdown';
 import Mainbutton from '../../components/atoms/MainButton';
-// import {useNavigation} from '@react-navigation/native';
-// import OwnerImage from '../OwnerImage/OwnerImage';
+import OwnerImageLogic from '../OwnerImage/OwnerImageLogic';
+import {useNavigation} from '@react-navigation/native';
+import OwnerImage from '../OwnerImage/OwnerImage';
 const Additems = () => {
-//   const navigation = useNavigation();
-//   const handleItems = () => {
-//     navigation.navigate(OwnerImage);
-//   };
+  const navigation = useNavigation();
+  const handleItems = () => {
+    navigation.navigate(OwnerImage);
+  };
   return (
     <ScrollView>
       <Text style={Ownerstyles.Titletext}> Add Items </Text>
@@ -36,7 +37,7 @@ const Additems = () => {
           <DropdownComponent />
           <Text style={Ownerstyles.Itemname}>Select Outfit </Text>
           <OutfitDropdown />
-          <Mainbutton text="Continue" onPress={undefined} />
+          <Mainbutton text="Continue" onPress={handleItems} />
         </View>
       </View>
     </ScrollView>

@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, ScrollView, Text, View} from 'react-native';
 import {Dropdown} from 'react-native-element-dropdown';
-import Ownerstyles from '../../screens/OwnerItems/OwnerStyles';
+import Ownerstyles from '../../screens/OwnerHomepage/OwnerHomestyle';
 import Colors from '../../constants/Colors';
 import {get} from 'react-native/Libraries/TurboModule/TurboModuleRegistry';
 import axios from 'axios';
@@ -56,7 +56,7 @@ const Sizeselection = () => {
           maxHeight={400}
           labelField="label"
           valueField="value"
-          placeholder={!isFocus ? 'Select item' : '...'}
+          placeholder={!isFocus ? 'select size' : '...'}
           searchPlaceholder="Search..."
           value={value}
           onFocus={() => setIsFocus(true)}
@@ -80,17 +80,17 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   dropdownContainer: {
-    height: '100%',
-    width: 250,
-    backgroundColor: '#fffff',
+    height: '70%',
+    width: '50%',
+    // backgroundColor: '#000',
     marginTop: 15,
     borderRadius: 10,
     // elevation: 3,
     // justifyContent: 'center',
-    alignItems: 'center',
+    // alignItems: 'center',
   },
   dropdown: {
-    height: '50%',
+    height: '100%',
     width: 250,
     backgroundColor: 'white',
     marginTop: 15,
