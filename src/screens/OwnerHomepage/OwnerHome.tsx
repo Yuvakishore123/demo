@@ -48,12 +48,13 @@ export default function OwnerHome({route, navigation}: Props) {
             renderItem={({item}) => (
               <TouchableOpacity key={item.id} style={styles.recentlyaddedcard}>
                 <Image
-                  source={{uri: item.image}}
+                  source={{uri: item.imageURL}}
                   style={styles.recentlyaddedimage}
                 />
                 <View style={styles.cardText}>
                   {/* <Text style={styles.recentlyaddedname}>{item.title}</Text> */}
                   <Text style={styles.recentlyaddedname}>{item.price}</Text>
+                  <Text style={styles.recentlyaddedname}>{item.name}</Text>
                 </View>
               </TouchableOpacity>
             )}
@@ -74,7 +75,9 @@ export default function OwnerHome({route, navigation}: Props) {
                   style={styles.recentlyaddedimage}
                 />
                 <View style={styles.cardText}>
-                  <Text style={styles.recentlyaddedname}>{item.title}</Text>
+                  <Text style={styles.recentlyaddedname}>
+                    {item.description}
+                  </Text>
                   <Text style={styles.recentlyaddedname}>{item.price}</Text>
                 </View>
               </TouchableOpacity>

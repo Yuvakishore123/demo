@@ -34,7 +34,7 @@ export default function SignUpScreen() {
   const handleSignupfun = async () => {
     try {
       const response = await axios.post(
-        'http://dfb1-106-51-70-135.ngrok-free.app/user/signup',
+        'http://7434-103-186-40-206.ngrok.io/api/user/save',
         {
           firstName,
           lastName,
@@ -45,7 +45,7 @@ export default function SignUpScreen() {
       );
       Alert.alert('Signup Successful!');
       console.log(response.data);
-      navigation.navigate('LoginScreen');
+      navigation.navigate('Login');
     } catch (error) {
       Alert.alert('Signup Error!', error.message);
       console.log(error);
@@ -185,13 +185,14 @@ export default function SignUpScreen() {
               )}
             </View>
           </View>
-          <View style={Styles.buttonContainer} onPress={handleSignupfun}>
-            <TouchableOpacity style={Styles.touchablebtn}>
+          <View style={Styles.buttonContainer}>
+            <TouchableOpacity
+              onPress={handleSignupfun}
+              style={Styles.touchablebtn}>
               <Text style={Styles.buttonText}>Sign Up</Text>
             </TouchableOpacity>
             <Text style={Styles.signupText}>Already have an account?</Text>
-            <TouchableOpacity
-              onPress={() => navigation.navigate('Login')}>
+            <TouchableOpacity onPress={() => navigation.navigate('Login')}>
               <Text style={Styles.signupButton}> Sign in</Text>
             </TouchableOpacity>
           </View>

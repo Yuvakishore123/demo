@@ -14,6 +14,11 @@ import SignupScreen from './src/screens/SignUp/SignupScreen';
 import OwnerHome from './src/screens/OwnerHomepage/OwnerHome';
 import Additems from './src/screens/Additems/Additems';
 import OwnerProfile from './src/screens/Ownerprofile/OwnerProfile';
+import OwnerImage from './src/screens/OwnerImage/OwnerImage';
+import {Image} from 'react-native-paper/lib/typescript/src/components/Avatar/Avatar';
+import Imagepicker from './src/components/atoms/Imagepicker';
+import Loginotp from './src/components/molecules/Loginotp';
+import LoginButton from './src/components/atoms/Button/LoginButton';
 const Stack = createSharedElementStackNavigator();
 
 const MyStack = () => {
@@ -31,6 +36,8 @@ const OwnerStack = () => {
       <Stack.Screen name="OwnerHome" component={OwnerHome} />
       <Stack.Screen name="Additems" component={Additems} />
       <Stack.Screen name="OwnerProfile" component={OwnerProfile} />
+      <Stack.Screen name="OwnerImage" component={OwnerImage} />
+      <Stack.Screen name="Imagepicker" component={Imagepicker} />
     </Stack.Navigator>
   );
 };
@@ -41,7 +48,7 @@ const OwnerNavigation = () => {
       <OwnerStack />
     </NavigationContainer>
   );
-}
+};
 const AuthStack = () => {
   return (
     <Stack.Navigator
@@ -79,7 +86,7 @@ const RootNavigation = () => {
   return (
     <NavigationContainer>
       <StatusBar backgroundColor="black" barStyle="light-content" />
-      {token === null ? <AuthStack /> : <MyStack />}
+      {token === null ? <AuthStack /> : <OwnerStack />}
     </NavigationContainer>
   );
 };
@@ -87,7 +94,7 @@ const RootNavigation = () => {
 const App = () => {
   return (
     <Provider store={store}>
-      <OwnerNavigation />
+      <LoginButton />
     </Provider>
   );
 };

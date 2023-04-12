@@ -26,7 +26,7 @@ export const Login = (email: string, password: string) => {
         type: LOGIN_REQUEST,
       });
       const response = await axios.post(
-        'http://c252-106-51-70-135.ngrok.io/api/login',
+        'http://7269-180-151-121-182.ngrok.io/api/login',
         {
           email: email,
           password: password,
@@ -42,7 +42,7 @@ export const Login = (email: string, password: string) => {
       const token = response.headers.access_token;
       // console.log(token);
       // const Token = JSON.stringify(token);
-      await AsyncStorage.getItem('token', token);
+      await AsyncStorage.setItem('token', token);
       console.log('token stored');
       console.log(token);
       dispatch({
@@ -67,7 +67,7 @@ export const SignupAndLogin = (
 ) => {
   return async (dispatch: Dispatch) => {
     axios
-      .post('http://c252-106-51-70-135.ngrok.io/api/user/sav', {
+      .post('http://7434-103-186-40-206.ngrok.io/api/user/save', {
         firstName,
         lastName,
         email,
