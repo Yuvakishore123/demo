@@ -1,33 +1,22 @@
+/* eslint-disable react-native/no-inline-styles */
 import {Text, View, TouchableOpacity, ScrollView} from 'react-native';
-import React, {useState} from 'react';
+import React from 'react';
 import style from './OwnerProfilestyle';
 import SwitchAccountButton from '../../components/atoms/SwtichAccountButton';
-import AddImages from '../../components/atoms/AddImages';
 import OwnerBottomTab from '../../components/molecules/OwnerBottomTab';
-import {Logout} from '../../redux/actions/actions';
-import {useDispatch} from 'react-redux';
+import Ownerprofilehook from './Useownerprofile';
 type Props = {
   navigation: any;
 };
 const OwnerProfile = ({navigation}: Props) => {
-  const dispatch = useDispatch();
-  const submit = () => {
-    dispatch(Logout());
-  };
-
+  const {submit} = Ownerprofilehook();
   return (
     <View style={style.profileStyle}>
       <ScrollView>
         <View style={style.buttonContainer}>
           <SwitchAccountButton />
         </View>
-        <View style={style.imageContainer}>
-          {/* <Image
-            source={require('../../../assets/images/UserProfilePic.jpg')}
-            style={style.profileImg}
-          /> */}
-          <AddImages />
-        </View>
+        <View style={style.imageContainer}>{/* <AddImages /> */}</View>
         <View>
           <Text style={style.profileText}>Vishal</Text>
         </View>
@@ -57,13 +46,4 @@ const OwnerProfile = ({navigation}: Props) => {
     </View>
   );
 };
-// const styles = StyleSheet.create({
-//   buttonContainer: {
-//     top: 0,
-//     right: 0,
-//     margin: 20,
-//     marginLeft: 180,
-//     // marginRight: 0,
-//   },
-// });
 export default OwnerProfile;

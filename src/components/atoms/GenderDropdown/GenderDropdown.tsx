@@ -1,20 +1,12 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {View, Text, TouchableOpacity} from 'react-native';
-import Ownerstyles from '../../screens/Additems/Additemsstyle';
-import {StyleSheet} from 'react-native';
-import Styles from '../../screens/LoginScreen/LoginStyle';
+import Ownerstyles from '../../../screens/Additems/Additemsstyle';
+import UseGenderDropdown from './UseGenderDropdown';
 const GenderDropdown = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [selectedGender, setSelectedGender] = useState('');
-  const handleOpen = () => {
-    setIsOpen(!isOpen);
-  };
-  const handleSelectGender = gender => {
-    setSelectedGender(gender);
-    setIsOpen(false);
-  };
+  const {isOpen, handleOpen, selectedGender, handleSelectGender} =
+    UseGenderDropdown();
   return (
-    <View style={Ownerstyles.Container}>
+    <View>
       <Text style={Ownerstyles.genderText}>Gender:</Text>
       <TouchableOpacity onPress={handleOpen}>
         <View style={Ownerstyles.dropdown}>
