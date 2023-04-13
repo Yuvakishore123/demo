@@ -25,14 +25,16 @@ const GenderDropdown = () => {
       </TouchableOpacity>
       {isOpen && (
         <View style={Ownerstyles.scrollView}>
-          <View style={Styles.DropdownContainer}>
+          <View>
             <TouchableOpacity
-              style={Styles.DropConatiner}
-              onPress={() => handleSelectGender('Male')}>
-              <Text style={Ownerstyles.genderText}>Male</Text>
+              style={Ownerstyles.DropdownContainer}
+              onPress={() => handleSelectGender('Men')}>
+              <Text style={Ownerstyles.genderText}>Men</Text>
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => handleSelectGender('Female')}>
-              <Text style={Ownerstyles.genderText}>Female</Text>
+            <TouchableOpacity
+              style={Ownerstyles.DropdownContainer}
+              onPress={() => handleSelectGender('Women')}>
+              <Text style={Ownerstyles.genderText}>Women</Text>
             </TouchableOpacity>
           </View>
         </View>

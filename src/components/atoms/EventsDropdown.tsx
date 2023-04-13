@@ -24,7 +24,7 @@ const DropdownComponent = () => {
   useEffect(() => {
     var config = {
       method: 'get',
-      url: 'https://fakestoreapi.com/products/categories',
+      url: 'https://e7c9-103-172-208-76.ngrok-free.app/category/list',
     };
     axios(config)
       .then(response => {
@@ -33,8 +33,8 @@ const DropdownComponent = () => {
         let CategoriesArray = [];
         for (var i = 0; i < count; i++) {
           CategoriesArray.push({
-            value: response.data[i],
-            label: response.data[i],
+            value: response.data[i].id,
+            label: response.data[i].categoryName,
           });
         }
         setCategoriesData(CategoriesArray);

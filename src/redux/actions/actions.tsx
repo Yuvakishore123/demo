@@ -7,6 +7,11 @@ export const LOGIN_FAILURE = 'LOGIN_FAILURE';
 export const SIGNUP_REQUEST = 'SIGNUP_REQUEST';
 export const SIGNUP_SUCCESS = 'SIGNUP_SUCCESS';
 export const SIGNUP_FAILURE = 'SIGNUP_FAILURE';
+
+export const ADD_ADDRESS = 'ADD_ADDRESS';
+
+export const DELETE_ADDRESS = 'DELETE_ADDRESS';
+
 export const Init = () => {
   return async (dispatch: Dispatch) => {
     let token = await AsyncStorage.getItem('token');
@@ -26,7 +31,7 @@ export const Login = (email: string, password: string) => {
         type: LOGIN_REQUEST,
       });
       const response = await axios.post(
-        'http://c252-106-51-70-135.ngrok.io/api/login',
+        'http://7269-180-151-121-182.ngrok.io/api/login',
         {
           email: email,
           password: password,
@@ -42,7 +47,7 @@ export const Login = (email: string, password: string) => {
       const token = response.headers.access_token;
       // console.log(token);
       // const Token = JSON.stringify(token);
-      await AsyncStorage.getItem('token', token);
+      await AsyncStorage.setItem('token', token);
       console.log('token stored');
       console.log(token);
       dispatch({
@@ -67,7 +72,7 @@ export const SignupAndLogin = (
 ) => {
   return async (dispatch: Dispatch) => {
     axios
-      .post('http://c252-106-51-70-135.ngrok.io/api/user/sav', {
+      .post('http://7434-103-186-40-206.ngrok.io/api/user/save', {
         firstName,
         lastName,
         email,
@@ -87,6 +92,23 @@ export const SignupAndLogin = (
       });
   };
 };
+
+export const addAddress = data => ({
+  type: 'ADD_ADDRESS',
+
+  payload: data,
+});
+
+export const deleteAddress = index => ({
+  type: 'DELETE_ADDRESS',
+  payload: index,
+});
+
+
+
+
+
+
 export const Logout = () => {
   return async (dispatch: Dispatch) => {
     await AsyncStorage.clear();

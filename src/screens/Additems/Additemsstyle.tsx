@@ -1,4 +1,5 @@
 import {StyleSheet} from 'react-native';
+import Colors from '../../constants/Colors';
 const Ownerstyles = StyleSheet.create({
   mainContainer: {
     backgroundColor: '#ECF2FF',
@@ -25,6 +26,7 @@ const Ownerstyles = StyleSheet.create({
     height: 100,
     width: 200,
     justifyContent: 'center',
+    marginTop: 10,
   },
   Itemname: {
     color: '#3E54AC',
@@ -70,12 +72,12 @@ const Ownerstyles = StyleSheet.create({
     fontSize: 18,
     fontWeight: '700',
     color: '#3E54AC',
-    marginTop: 20,
+    marginTop: 10,
     alignItems: 'center',
   },
   dropdowntext: {
     justifyContent: 'center',
-    color: '#3E54AC',
+    color: Colors.iconscolor,
     fontSize: 18,
     fontFamily: 'poppins',
     fontWeight: '700',
@@ -95,7 +97,7 @@ const Ownerstyles = StyleSheet.create({
   dropdown: {
     backgroundColor: '#FFFFFF',
     marginTop: 15,
-    borderRadius: 10,
+    borderRadius: 5,
     height: 48,
     width: 250,
     alignItems: 'center',
@@ -103,6 +105,15 @@ const Ownerstyles = StyleSheet.create({
   dropConatiner: {
     height: '100%',
     alignItems: 'center',
+    marginTop: 10,
+  },
+  DropdownContainer: {
+    height: 48,
+    width: 250,
+    backgroundColor: 'white',
+    alignItems: 'center',
+    marginTop: 10,
+    // marginLeft: 40,
   },
 });
 export default Ownerstyles;

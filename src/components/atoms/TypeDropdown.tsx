@@ -19,7 +19,7 @@ const TypeSelction = () => {
   useEffect(() => {
     var config = {
       method: 'get',
-      url: 'https://fakestoreapi.com/products/categories',
+      url: 'https://e7c9-103-172-208-76.ngrok-free.app/subcategory/list',
     };
     axios(config)
       .then(response => {
@@ -28,8 +28,8 @@ const TypeSelction = () => {
         let CategoriesArray = [];
         for (var i = 0; i < count; i++) {
           CategoriesArray.push({
-            value: response.data[i],
-            label: response.data[i],
+            value: response.data[i].id,
+            label: response.data[i].subcategoryName,
           });
         }
         setCategoriesData(CategoriesArray);
@@ -70,14 +70,14 @@ export default TypeSelction;
 const styles = StyleSheet.create({
   container: {
     // backgroundColor: 'white',
-    padding: 16,
+    padding: 10,
     justifyContent: 'center',
   },
   dropdownContainer: {
     height: '100%',
     width: 250,
     backgroundColor: '#fffff',
-    marginTop: 15,
+    marginTop: 5,
     borderRadius: 10,
     // elevation: 3,
     // justifyContent: 'center',
@@ -87,24 +87,26 @@ const styles = StyleSheet.create({
     height: '50%',
     width: 250,
     backgroundColor: 'white',
-    marginTop: 15,
+    marginTop: 10,
     borderRadius: 10,
     // elevation: 3,
     justifyContent: 'center',
     alignItems: 'center',
   },
   icon: {
-    marginRight: 20,
+    // marginRight: 100,
     backgroundColor: Colors.primary,
   },
   label: {
     // position: 'absolute',
     // backgroundColor: 'white',
-    left: 22,
-    top: 8,
-    zIndex: 999,
-    paddingHorizontal: 8,
-    fontSize: 14,
+    // left: 22,
+    // top: 8,
+    // zIndex: 999,
+    // paddingHorizontal: 8,
+    // fontSize: 14,
+    // alignItems: 'center',
+    // marginLeft: 20,
   },
   placeholderStyle: {
     fontSize: 18,
@@ -116,9 +118,9 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: '700',
     color: Colors.iconscolor,
-    justifyContent: 'center',
+    // justifyContent: 'center',
     alignItems: 'center',
-    marginLeft: '40%',
+    marginLeft: '25%',
   },
   iconStyle: {
     width: 20,
@@ -129,5 +131,6 @@ const styles = StyleSheet.create({
   inputSearchStyle: {
     height: 40,
     fontSize: 16,
+    color: Colors.iconscolor,
   },
 });
