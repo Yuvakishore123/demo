@@ -6,6 +6,10 @@ import AddImages from '../../components/atoms/AddImages';
 import OwnerBottomTab from '../../components/molecules/OwnerBottomTab';
 import {Logout} from '../../redux/actions/actions';
 import {useDispatch} from 'react-redux';
+import {useNavigation, useIsFocused} from '@react-navigation/native';
+import OwnerEditProfile from '../OwnerEditProfile/OwnerEditProfile';
+import OwnerAddress from '../OwnerAddress/OwnerAddress';
+
 type Props = {
   navigation: any;
 };
@@ -15,6 +19,13 @@ const OwnerProfile = ({navigation}: Props) => {
     dispatch(Logout());
   };
 
+  const handleOwnerEditProfile = () => {
+    navigation.navigate('OwnerEditProfile');
+  };
+  const handleOwnerAddress = () => {
+    navigation.navigate('OwnerAddress');
+  };
+
   return (
     <View style={style.profileStyle}>
       <ScrollView>
@@ -22,17 +33,15 @@ const OwnerProfile = ({navigation}: Props) => {
           <SwitchAccountButton />
         </View>
         <View style={style.imageContainer}>
-          {/* <Image
-            source={require('../../../assets/images/UserProfilePic.jpg')}
-            style={style.profileImg}
-          /> */}
           <AddImages />
         </View>
         <View>
           <Text style={style.profileText}>Vishal</Text>
         </View>
         <View style={style.profileFields}>
-          <TouchableOpacity style={style.whiteBtn}>
+          <TouchableOpacity
+            style={style.whiteBtn}
+            onPress={handleOwnerEditProfile}>
             <Text style={style.btnPText}>Edit Profile</Text>
           </TouchableOpacity>
           <TouchableOpacity style={style.whiteBtn}>
@@ -41,7 +50,7 @@ const OwnerProfile = ({navigation}: Props) => {
           <TouchableOpacity style={style.whiteBtn}>
             <Text style={style.btnPText}>My Rentals</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={style.whiteBtn}>
+          <TouchableOpacity style={style.whiteBtn} onPress={handleOwnerAddress}>
             <Text style={style.btnPText}>Address</Text>
           </TouchableOpacity>
         </View>
@@ -57,13 +66,5 @@ const OwnerProfile = ({navigation}: Props) => {
     </View>
   );
 };
-// const styles = StyleSheet.create({
-//   buttonContainer: {
-//     top: 0,
-//     right: 0,
-//     margin: 20,
-//     marginLeft: 180,
-//     // marginRight: 0,
-//   },
-// });
+
 export default OwnerProfile;
