@@ -1,8 +1,8 @@
+/* eslint-disable react-native/no-inline-styles */
 import {Text, View, TouchableOpacity, ScrollView} from 'react-native';
-import React, {useState} from 'react';
+import React from 'react';
 import style from './OwnerProfilestyle';
 import SwitchAccountButton from '../../components/atoms/SwtichAccountButton';
-import AddImages from '../../components/atoms/AddImages';
 import OwnerBottomTab from '../../components/molecules/OwnerBottomTab';
 import {Logout} from '../../redux/actions/actions';
 import {useDispatch} from 'react-redux';
@@ -66,5 +66,4 @@ const OwnerProfile = ({navigation}: Props) => {
     </View>
   );
 };
-
 export default OwnerProfile;

@@ -1,28 +1,17 @@
-import {Image, InputAccessoryView, Text, View} from 'react-native';
+import {Image, Text, View} from 'react-native';
 import React from 'react';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import Additems from '../Additems/AdditemsLogic';
-import {useNavigation} from '@react-navigation/native';
 import OwnerImagestyles from './OwnerImagestyles';
 import Sizeselection from '../../components/atoms/Sizeselect';
 import {ScrollView, TextInput} from 'react-native-gesture-handler';
 import Mainbutton from '../../components/atoms/MainButton';
-import OwnerHome from '../OwnerHomepage/OwnerHome';
-import {OpenPicker} from '../../components/atoms/Openpicker';
-import AddImages from '../../components/atoms/AddImages';
-import Imagepicker from '../../components/atoms/Imagepicker';
+import OwnerImage from './Ownerhook';
 
-export default function OwnerImageLogic() {
-  const navigation = useNavigation();
-  const onHandleOwnerItems = () => {
-    navigation.navigate(Additems);
-  };
-  const Onhandlepress = () => {
-    navigation.navigate(Imagepicker);
-  };
+export default function Owneraddimages() {
+  const {onHandleOwnerItems, Onhandlepress} = OwnerImage();
   return (
     <ScrollView style={OwnerImagestyles.Scroll}>
-      <View style={OwnerImagestyles.mainContainer}>
+      <View>
         <View style={OwnerImagestyles.TitletextContainer}>
           <MaterialIcons
             style={OwnerImagestyles.Icon}

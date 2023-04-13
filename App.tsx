@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {NavigationContainer} from '@react-navigation/native';
-import {StatusBar, Text, View} from 'react-native';
+import {StatusBar, View} from 'react-native';
 import {createSharedElementStackNavigator} from 'react-navigation-shared-element';
 import LoginScreen from './src/screens/LoginScreen/LoginScreen';
 import {Provider, useDispatch, useSelector} from 'react-redux';
@@ -14,15 +14,9 @@ import SignupScreen from './src/screens/SignUp/SignupScreen';
 import OwnerHome from './src/screens/OwnerHomepage/OwnerHome';
 import Additems from './src/screens/Additems/Additems';
 import OwnerProfile from './src/screens/Ownerprofile/OwnerProfile';
-import OwnerImage from './src/screens/OwnerImage/OwnerImage';
-import {Image} from 'react-native-paper/lib/typescript/src/components/Avatar/Avatar';
 import Imagepicker from './src/components/atoms/Imagepicker';
 import Loginotp from './src/components/molecules/Loginotp';
 import LoginButton from './src/components/atoms/Button/LoginButton';
-import EditProfile from './src/screens/OwnerEditProfile/OwnerEditProfile';
-import OwnerEditProfile from './src/screens/OwnerEditProfile/OwnerEditProfile';
-import OwnerAddress from './src/screens/OwnerAddress/OwnerAddress';
-import OwnerAddAddress from './src/screens/OwnerAddress/OwnerAddAddress';
 const Stack = createSharedElementStackNavigator();
 
 const MyStack = () => {
@@ -40,10 +34,6 @@ const OwnerStack = () => {
       <Stack.Screen name="OwnerHome" component={OwnerHome} />
       <Stack.Screen name="Additems" component={Additems} />
       <Stack.Screen name="OwnerProfile" component={OwnerProfile} />
-      <Stack.Screen name="OwnerEditProfile" component={OwnerEditProfile} />
-      <Stack.Screen name="OwnerAddress" component={OwnerAddress} />
-      <Stack.Screen name="OwnerAddAddress" component={OwnerAddAddress} />
-
       <Stack.Screen name="OwnerImage" component={OwnerImage} />
       <Stack.Screen name="Imagepicker" component={Imagepicker} />
     </Stack.Navigator>
@@ -74,17 +64,19 @@ const RootNavigation = () => {
   const [loading, setLoading] = useState(true);
 
   const dispatch = useDispatch();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const init = async () => {
-    await dispatch(Init());
+    dispatch(Init());
     setLoading(false);
   };
 
   useEffect(() => {
     init();
-  }, []);
+  }, [init]);
 
   if (loading === true) {
     return (
+      // eslint-disable-next-line react-native/no-inline-styles
       <View style={{flex: 1, justifyContent: 'center'}}>
         <ActivityIndicator size="large" color={Colors.primary} />
       </View>
@@ -102,8 +94,7 @@ const RootNavigation = () => {
 const App = () => {
   return (
     <Provider store={store}>
-      {/* <LoginButton /> */}
-      <OwnerNavigation />
+      <LoginButton />
     </Provider>
   );
 };

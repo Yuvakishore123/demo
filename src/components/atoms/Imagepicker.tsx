@@ -71,7 +71,7 @@ import {androidCameraPermission} from '../../constants/Permissions';
 import axios from 'axios';
 import {Button} from 'react-native-paper';
 import {useNavigation} from '@react-navigation/native';
-import OwnerImage from '../../screens/OwnerImage/OwnerImage';
+import OwnerImage from '../../screens/OwnerImage/Ownerhook';
 
 const Imagepicker = () => {
   const navigation = useNavigation();
