@@ -7,6 +7,11 @@ export const LOGIN_FAILURE = 'LOGIN_FAILURE';
 export const SIGNUP_REQUEST = 'SIGNUP_REQUEST';
 export const SIGNUP_SUCCESS = 'SIGNUP_SUCCESS';
 export const SIGNUP_FAILURE = 'SIGNUP_FAILURE';
+
+export const ADD_ADDRESS = 'ADD_ADDRESS';
+
+export const DELETE_ADDRESS = 'DELETE_ADDRESS';
+
 export const Init = () => {
   return async (dispatch: Dispatch) => {
     let token = await AsyncStorage.getItem('token');
@@ -87,6 +92,23 @@ export const SignupAndLogin = (
       });
   };
 };
+
+export const addAddress = data => ({
+  type: 'ADD_ADDRESS',
+
+  payload: data,
+});
+
+export const deleteAddress = index => ({
+  type: 'DELETE_ADDRESS',
+  payload: index,
+});
+
+
+
+
+
+
 export const Logout = () => {
   return async (dispatch: Dispatch) => {
     await AsyncStorage.clear();

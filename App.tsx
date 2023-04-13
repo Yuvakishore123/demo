@@ -4,7 +4,7 @@ import {StatusBar, View} from 'react-native';
 import {createSharedElementStackNavigator} from 'react-navigation-shared-element';
 import LoginScreen from './src/screens/LoginScreen/LoginScreen';
 import {Provider, useDispatch, useSelector} from 'react-redux';
-import {store} from './src/redux/store';
+import {store} from './src/redux/store/store';
 import Profile from './src/screens/Profile/Profile';
 import {ActivityIndicator} from 'react-native-paper';
 import Colors from './src/constants/Colors';
@@ -15,7 +15,8 @@ import OwnerHome from './src/screens/OwnerHomepage/OwnerHome';
 import Additems from './src/screens/Additems/Additems';
 import OwnerProfile from './src/screens/Ownerprofile/OwnerProfile';
 import Imagepicker from './src/components/atoms/Imagepicker';
-import Owneraddimages from './src/screens/OwnerImage/OwneraddImages';
+import Loginotp from './src/components/molecules/Loginotp';
+import LoginButton from './src/components/atoms/Button/LoginButton';
 const Stack = createSharedElementStackNavigator();
 
 const MyStack = () => {
@@ -33,7 +34,7 @@ const OwnerStack = () => {
       <Stack.Screen name="OwnerHome" component={OwnerHome} />
       <Stack.Screen name="Additems" component={Additems} />
       <Stack.Screen name="OwnerProfile" component={OwnerProfile} />
-      <Stack.Screen name="Owneraddimages" component={Owneraddimages} />
+      <Stack.Screen name="OwnerImage" component={OwnerImage} />
       <Stack.Screen name="Imagepicker" component={Imagepicker} />
     </Stack.Navigator>
   );
@@ -93,7 +94,7 @@ const RootNavigation = () => {
 const App = () => {
   return (
     <Provider store={store}>
-      <OwnerNavigation />
+      <LoginButton />
     </Provider>
   );
 };

@@ -1,9 +1,5 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
-// export const fetchProducts = createAsyncThunk('fetchProducts', async () => {
-//   const res = await fetch('https://api.postman.com/collections/26610657-a65914fc-aef3-48b4-991d-91c95c0882d7?access_key=PMAT-01GWRHABB6BH0FTKN39R9KY9TN');
-//   const final = await res.json();
-//   return final;
-// });
+
 import axios from 'axios';
 export const fetchProducts = createAsyncThunk('fetchProducts', async () => {
   const res = await axios.get('https://fakestoreapi.com/products', {});

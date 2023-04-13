@@ -61,6 +61,7 @@ export default function SignUpScreen() {
     },
     validationSchema: SignUpSchema,
     onSubmit: handleSignupfun,
+    SignupScreen,
   });
   const handleFirstNameChange = (value: string) => {
     setFirstName(value);

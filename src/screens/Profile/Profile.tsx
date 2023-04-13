@@ -6,6 +6,8 @@ import {Logout} from '../../redux/actions/actions';
 import MyHeader from '../../components/molecules/MyHeader';
 import BottomTab from '../../components/molecules/BottomTab';
 import ImagePicker from 'react-native-image-picker';
+import {useNavigation, useIsFocused} from '@react-navigation/native';
+import EditProfile from '../OwnerEditProfile/OwnerEditProfile';
 
 import {Image} from 'react-native';
 type Props = {
@@ -18,6 +20,8 @@ export default function Profile({route, navigation}: Props) {
   const submit = () => {
     dispatch(Logout());
   };
+
+
 
   return (
     <View style={{flex: 1}}>
@@ -36,7 +40,9 @@ export default function Profile({route, navigation}: Props) {
           </View>
 
           <View style={style.profileFields}>
-            <TouchableOpacity style={style.whiteBtn}>
+            <TouchableOpacity
+              style={style.whiteBtn}
+              onPress={EditProfileHandleNavigation}>
               <Text style={style.btnPText}>Edit Profile</Text>
             </TouchableOpacity>
             <TouchableOpacity style={style.whiteBtn}>
@@ -154,17 +160,5 @@ const style = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
     elevation: 5,
-  },
-  btnPText: {
-    position: 'absolute',
-
-    left: 110,
-    top: 15,
-    height: 29,
-    width: 104,
-    fontWeight: 'bold',
-    fontFamily: 'Poppins',
-    fontSize: 20,
-    color: '#3E54AC',
   },
 });
