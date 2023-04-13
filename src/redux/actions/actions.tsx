@@ -7,6 +7,12 @@ export const LOGIN_FAILURE = 'LOGIN_FAILURE';
 export const SIGNUP_REQUEST = 'SIGNUP_REQUEST';
 export const SIGNUP_SUCCESS = 'SIGNUP_SUCCESS';
 export const SIGNUP_FAILURE = 'SIGNUP_FAILURE';
+export const OTP_REQUEST = 'OTP_REQUEST';
+export const OTP_SUCCESS = 'OTP_SUCCESS';
+export const OTP_FAILURE = 'OTP_FAILURE';
+export const VERIFY_OTP_REQUEST = 'VERIFY_OTP_REQUEST';
+export const VERIFY_OTP_SUCCESS = 'VERIFY_OTP_SUCCESS';
+export const VERIFY_OTP_FAILURE = 'VERIFY_OTP_FAILURE';
 export const Init = () => {
   return async (dispatch: Dispatch) => {
     let token = await AsyncStorage.getItem('token');
@@ -19,6 +25,43 @@ export const Init = () => {
     }
   };
 };
+export const getOTP = (phoneNo: string) => {
+  return async (dispatch: Dispatch) => {
+    dispatch({type: VERIFY_OTP_REQUEST});
+    try {
+      const response = await axios.post(
+        'http://7269-180-151-121-182.ngrok.io/api/phoneNo',
+        {
+          phoneNo,
+      });
+      console.log('otp send');
+      dispatch({type: VERIFY_OTP_SUCCESS, payload: response.data});
+    } catch (error) {
+      dispatch({type: VERIFY_OTP_FAILURE, payload: error.message});
+    }
+  };
+};
+
+export const submitOTP = (phoneNo: string, otp: number) => {
+  return async (dispatch: Dispatch) => {
+    dispatch({type: LOGIN_REQUEST});
+    try {
+      const response = await axios.post(
+        'http://7269-180-151-121-182.ngrok.io/api/otplogin',
+        {
+          phoneNo: phoneNo,
+          otp: otp,
+        },
+      );
+      const token = response.data.access_token;
+      await AsyncStorage.setItem('token', token);
+      dispatch({type: LOGIN_SUCCESS, payload: token});
+    } catch (error) {
+      dispatch({type: LOGIN_FAILURE, payload: error.message});
+    }
+  };
+};
+
 export const Login = (email: string, password: string) => {
   return async (dispatch: Dispatch) => {
     try {
@@ -26,7 +69,7 @@ export const Login = (email: string, password: string) => {
         type: LOGIN_REQUEST,
       });
       const response = await axios.post(
-        'http://c252-106-51-70-135.ngrok.io/api/login',
+        'https://3566-180-151-121-182.ngrok-free.app/api/login',
         {
           email: email,
           password: password,
@@ -40,9 +83,7 @@ export const Login = (email: string, password: string) => {
         },
       );
       const token = response.headers.access_token;
-      // console.log(token);
-      // const Token = JSON.stringify(token);
-      await AsyncStorage.getItem('token', token);
+      await AsyncStorage.setItem('token', token);
       console.log('token stored');
       console.log(token);
       dispatch({
@@ -67,7 +108,7 @@ export const SignupAndLogin = (
 ) => {
   return async (dispatch: Dispatch) => {
     axios
-      .post('http://c252-106-51-70-135.ngrok.io/api/user/sav', {
+      .post('http://7269-180-151-121-182.ngrok.io/api/user/save', {
         firstName,
         lastName,
         email,

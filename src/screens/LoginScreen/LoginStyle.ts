@@ -1,26 +1,10 @@
 import {StyleSheet} from 'react-native';
-import React from 'react';
 import Colors from '../../constants/Colors';
 const Styles = StyleSheet.create({
   mainContainer: {
     backgroundColor: Colors.main,
     height: '100%',
     width: '100%',
-  },
-  DropdownContainer: {
-    width: 250,
-    height: 100,
-    backgroundColor: Colors.white,
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderRadius: 8,
-  },
-  DropConatiner: {
-    height: 50,
-    width: 100,
-    backgroundColor: Colors.white,
-    alignItems: 'center',
-    justifyContent: 'center',
   },
   container: {
     justifyContent: 'center',
@@ -64,7 +48,7 @@ const Styles = StyleSheet.create({
     justifyContent: 'center',
     shadowColor: '#52006A',
     // elevation: 1,
-    marginTop: 70,
+    marginTop: 40,
   },
   cardText: {
     color: '#3E54AC',
@@ -91,7 +75,7 @@ const Styles = StyleSheet.create({
     width: 309,
     backgroundColor: '#3E54AC',
     margin: 15,
-    marginTop: 30,
+    marginTop: 20,
     borderRadius: 8,
     color: '#FFFFFF',
     justifyContent: 'center',

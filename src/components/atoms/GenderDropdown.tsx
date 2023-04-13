@@ -1,18 +1,22 @@
 import React, {useState} from 'react';
 import {View, Text, TouchableOpacity} from 'react-native';
 import Ownerstyles from '../../screens/Additems/Additemsstyle';
-import {StyleSheet} from 'react-native';
 import Styles from '../../screens/LoginScreen/LoginStyle';
-const GenderDropdown = () => {
+
+const GenderDropdown = ({onChange}) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedGender, setSelectedGender] = useState('');
+
   const handleOpen = () => {
     setIsOpen(!isOpen);
   };
-  const handleSelectGender = gender => {
+
+  const handleSelectGender = (gender: React.SetStateAction<string>) => {
     setSelectedGender(gender);
     setIsOpen(false);
+    onChange(gender); // pass the selected gender value back to parent
   };
+
   return (
     <View style={Ownerstyles.Container}>
       <Text style={Ownerstyles.genderText}>Gender:</Text>
@@ -40,4 +44,5 @@ const GenderDropdown = () => {
     </View>
   );
 };
+
 export default GenderDropdown;

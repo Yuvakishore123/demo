@@ -3,46 +3,30 @@ import {StyleSheet, Text, View} from 'react-native';
 import {Dropdown} from 'react-native-element-dropdown';
 import Ownerstyles from '../../screens/Additems/Additemsstyle';
 import Colors from '../../constants/Colors';
-import {get} from 'react-native/Libraries/TurboModule/TurboModuleRegistry';
 import axios from 'axios';
-import {object} from 'yup';
-// import AntDesign from '@expo/vector-icons/AntDesign';
-const data = [
-  {label: 'Item 1', value: '1'},
-  {label: 'Item 2', value: '2'},
-  {label: 'Item 3', value: '3'},
-  {label: 'Item 4', value: '4'},
-  {label: 'Item 5', value: '5'},
-  {label: 'Item 6', value: '6'},
-  {label: 'Item 7', value: '7'},
-  {label: 'Item 8', value: '8'},
-];
-const DropdownComponent = () => {
-  const [CategoriesData, setCategoriesData] = useState([]);
-  const [value, setValue] = useState(null);
+
+const DropdownComponent = ({value, onChange}) => {
+  const [categoriesData, setCategoriesData] = useState([]);
   const [isFocus, setIsFocus] = useState(false);
+
   useEffect(() => {
-    var config = {
-      method: 'get',
-      url: 'https://fakestoreapi.com/products/categories',
-    };
-    axios(config)
-      .then(response => {
-        console.log(JSON.stringify(response.data));
-        var count = Object.keys(response.data).length;
-        let CategoriesArray = [];
-        for (var i = 0; i < count; i++) {
-          CategoriesArray.push({
-            value: response.data[i],
-            label: response.data[i],
-          });
-        }
-        setCategoriesData(CategoriesArray);
-      })
-      .catch(error => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          'https://21c7-106-51-70-135.ngrok-free.app/category/list',
+        );
+        const categoriesArray = response.data.map(category => ({
+          value: category.id,
+          label: category.categoryName,
+        }));
+        setCategoriesData(categoriesArray);
+      } catch (error) {
         console.log(error);
-      });
+      }
+    };
+    fetchData();
   }, []);
+
   return (
     <View style={Ownerstyles.scrollView}>
       <View style={styles.dropdownContainer}>
@@ -52,7 +36,7 @@ const DropdownComponent = () => {
           selectedTextStyle={styles.selectedTextStyle}
           inputSearchStyle={styles.inputSearchStyle}
           iconStyle={styles.iconStyle}
-          data={CategoriesData}
+          data={categoriesData}
           search
           maxHeight={400}
           labelField="label"
@@ -63,7 +47,7 @@ const DropdownComponent = () => {
           onFocus={() => setIsFocus(true)}
           onBlur={() => setIsFocus(false)}
           onChange={item => {
-            setValue(item.value);
+            onChange(item.value);
             setIsFocus(false);
           }}
         />
@@ -71,6 +55,7 @@ const DropdownComponent = () => {
     </View>
   );
 };
+
 export default DropdownComponent;
 const styles = StyleSheet.create({
   container: {

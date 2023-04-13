@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {NavigationContainer} from '@react-navigation/native';
-import {StatusBar, Text, View} from 'react-native';
+import {StatusBar, View} from 'react-native';
 import {createSharedElementStackNavigator} from 'react-navigation-shared-element';
 import LoginScreen from './src/screens/LoginScreen/LoginScreen';
 import {Provider, useDispatch, useSelector} from 'react-redux';
@@ -14,15 +14,30 @@ import SignupScreen from './src/screens/SignUp/SignupScreen';
 import OwnerHome from './src/screens/OwnerHomepage/OwnerHome';
 import Additems from './src/screens/Additems/Additems';
 import OwnerProfile from './src/screens/Ownerprofile/OwnerProfile';
+import OwnerImage from './src/screens/OwnerImage/OwnerImage';
+import MyRentals from './src/screens/My Rentals/MyRentals';
+import OproductDetailspage from './src/screens/OwnerProductdetailsPage/OproductDetails';
+import OtpScreen from './src/screens/OtpScreen/OtpScreen';
+import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
+import MyStack from './src/navigation/UserStack';
+// import Init from './src/redux/actions/actions';
 const Stack = createSharedElementStackNavigator();
+const Tab = createMaterialBottomTabNavigator();
 
-const MyStack = () => {
+const MyStacknavigation = () => {
   return (
-    <Stack.Navigator screenOptions={{headerShown: false}}>
-      <Stack.Screen name="main" component={Home} />
-      <Stack.Screen name="Profile" component={Profile} />
-      <Stack.Screen name="SignupScreen" component={SignupScreen} />
-    </Stack.Navigator>
+    <NavigationContainer>
+      <MyStack />
+    </NavigationContainer>
+  );
+};
+
+const OwnerProfileStack = () => {
+  return (
+    <Tab.Navigator>
+      <Tab.Screen name="OwnerProfile" component={OwnerProfile} />
+      <Tab.Screen name="MyRentals" component={MyRentals} />
+    </Tab.Navigator>
   );
 };
 const OwnerStack = () => {
@@ -30,7 +45,9 @@ const OwnerStack = () => {
     <Stack.Navigator screenOptions={{headerShown: false}}>
       <Stack.Screen name="OwnerHome" component={OwnerHome} />
       <Stack.Screen name="Additems" component={Additems} />
-      <Stack.Screen name="OwnerProfile" component={OwnerProfile} />
+      <Stack.Screen name="OwnerImage" component={OwnerImage} />
+      <Stack.Screen name="OwnerProfileStack" component={OwnerProfileStack} />
+      <Stack.Screen name="OproductDetails" component={OproductDetailspage} />
     </Stack.Navigator>
   );
 };
@@ -41,7 +58,7 @@ const OwnerNavigation = () => {
       <OwnerStack />
     </NavigationContainer>
   );
-}
+};
 const AuthStack = () => {
   return (
     <Stack.Navigator
@@ -49,6 +66,7 @@ const AuthStack = () => {
         headerShown: false,
       }}>
       <Stack.Screen name="Login" component={LoginScreen} />
+      <Stack.Screen name="OtpScreen" component={OtpScreen} />
       <Stack.Screen name="SignupScreen" component={SignupScreen} />
     </Stack.Navigator>
   );
@@ -87,7 +105,7 @@ const RootNavigation = () => {
 const App = () => {
   return (
     <Provider store={store}>
-      <OwnerNavigation />
+      <MyStacknavigation />
     </Provider>
   );
 };

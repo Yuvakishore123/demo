@@ -1,33 +1,22 @@
-import {
-  Button,
-  StyleSheet,
-  Text,
-  View,
-  TouchableOpacity,
-  ScrollView,
-} from 'react-native';
-import React, {useState} from 'react';
+import {Text, View, TouchableOpacity, ScrollView} from 'react-native';
+import React from 'react';
 import style from './OwnerProfilestyle';
 import SwitchAccountButton from '../../components/atoms/SwtichAccountButton';
-import AddImages from '../../components/atoms/AddImages';
+// import AddImages from '../../components/atoms/Profileimage/Profileimage';
 import OwnerBottomTab from '../../components/molecules/OwnerBottomTab';
+import Ownerprofilehook from './Useownerprofile';
 type Props = {
   navigation: any;
 };
 const OwnerProfile = ({navigation}: Props) => {
+  const {submit} = Ownerprofilehook();
   return (
     <View style={style.profileStyle}>
       <ScrollView>
         <View style={style.buttonContainer}>
           <SwitchAccountButton />
         </View>
-        <View style={style.imageContainer}>
-          {/* <Image
-            source={require('../../../assets/images/UserProfilePic.jpg')}
-            style={style.profileImg}
-          /> */}
-          <AddImages />
-        </View>
+        <View style={style.imageContainer}>{/* <AddImages /> */}</View>
         <View>
           <Text style={style.profileText}>Vishal</Text>
         </View>
@@ -46,7 +35,7 @@ const OwnerProfile = ({navigation}: Props) => {
           </TouchableOpacity>
         </View>
         <View>
-          <TouchableOpacity style={style.btnfield}>
+          <TouchableOpacity onPress={submit} style={style.btnfield}>
             <Text style={style.btntext}>Logout </Text>
           </TouchableOpacity>
         </View>
@@ -57,13 +46,4 @@ const OwnerProfile = ({navigation}: Props) => {
     </View>
   );
 };
-// const styles = StyleSheet.create({
-//   buttonContainer: {
-//     top: 0,
-//     right: 0,
-//     margin: 20,
-//     marginLeft: 180,
-//     // marginRight: 0,
-//   },
-// });
 export default OwnerProfile;

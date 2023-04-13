@@ -1,17 +1,17 @@
 import React from 'react';
 import {FlatList, Image, TouchableOpacity, View} from 'react-native';
-import styles from './OwnerHomestyle';
+import styles from '../OwnerHomepage/OwnerHomestyle';
 import {Text} from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
-import OwnerBottomTab from '../../components/molecules/OwnerBottomTab';
-import Useownerhome from './Useownerhome';
+import Icon from 'react-native-vector-icons/MaterialIcons';
+import Usemyrental from './Usemyrental';
 type Props = {
-  route: {name: string};
   navigation: any;
 };
 
 export default function OwnerHome({navigation}: Props) {
-  const {products} = Useownerhome();
+  const {products} = Usemyrental();
+
   if (!products) {
     return <Text>Loading products...</Text>;
   }
@@ -19,49 +19,15 @@ export default function OwnerHome({navigation}: Props) {
   return (
     <View style={styles.mainContainer}>
       <ScrollView>
-        <View>
-          <Text style={styles.headertxt}>Welcome John</Text>
-        </View>
-        <View style={styles.card}>
-          <Text style={styles.title}>dashboard</Text>
-          <View style={styles.rentalitemscard}>
-            <Text style={styles.renteditems1}>Rented items</Text>
-            <Text style={styles.renteditems2}>Total Earnings</Text>
-          </View>
-          <View style={styles.rentalitemscard}>
-            <Text style={styles.cardsrentalprices}>100</Text>
-            <Text style={styles.cardsTotalprices}>2000</Text>
-          </View>
-        </View>
-        <View>
-          <Text style={styles.headertxt}>Recently Added</Text>
-        </View>
-        <View>
-          <FlatList
-            data={products}
-            keyExtractor={item => item.id}
-            horizontal={true}
-            renderItem={({item}) => (
-              <TouchableOpacity
-                key={item.id}
-                style={styles.recentlyaddedcard}
-                onPress={() =>
-                  navigation.navigate('OproductDetails', {product: item})
-                }>
-                <Image
-                  source={{uri: item.imageURL}}
-                  style={styles.recentlyaddedimage}
-                />
-                <View style={styles.cardText}>
-                  <Text style={styles.cardText}>{item.description}</Text>
-                  <Text style={styles.cardText}>{item.price}</Text>
-                </View>
-              </TouchableOpacity>
-            )}
+        <View style={{flexDirection: 'row'}}>
+          <Icon
+            style={{marginLeft: 20, marginTop: 41}}
+            name="arrow-back-ios"
+            size={23}
+            color="#3E54AC"
+            onPress={() => navigation.goBack()}
           />
-        </View>
-        <View>
-          <Text style={styles.headertxt}>Rental History</Text>
+          <Text style={styles.headertxt}>My Rentals</Text>
         </View>
         <View>
           <FlatList
@@ -113,13 +79,11 @@ export default function OwnerHome({navigation}: Props) {
                   </View>
                 );
               }
-              // Render only 1 product for odd indices
               return null;
             }}
           />
         </View>
       </ScrollView>
-      <OwnerBottomTab navigation={navigation} />
     </View>
   );
 }

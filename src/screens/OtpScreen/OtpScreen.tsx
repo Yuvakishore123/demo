@@ -7,26 +7,25 @@ import {
   Image,
   ScrollView,
 } from 'react-native';
-import Useformik from './Useloginscreen';
-import {useNavigation} from '@react-navigation/native';
-import Styles from './LoginStyle';
+import Styles from '../LoginScreen/LoginStyle';
+import Useotp from './Useotp';
 export default function LoginScreen() {
-  const navigation = useNavigation();
   const {
-    email,
-    password,
-    handleEmailChange,
+    phoneNo,
+    otp,
+    handlephoneNumberChange,
     handlePasswordChange,
     handleBlur,
+    GETOTP,
+    handleLogin,
     formik,
     passwordError,
-    handleLogin,
-  } = Useformik();
+  } = Useotp();
   return (
     <ScrollView style={Styles.mainContainer}>
       <View style={Styles.container}>
         <View style={Styles.titleTextContainer}>
-          <Text style={Styles.titleText}>Login</Text>
+          <Text style={Styles.titleText}>OTP Login</Text>
           <Image
             style={Styles.image}
             source={require('../../../Assets/LoginImage.png')}
@@ -34,20 +33,21 @@ export default function LoginScreen() {
         </View>
         <View style={Styles.card}>
           <View>
-            <Text style={Styles.cardText}> Email </Text>
+            <Text style={Styles.cardText}> PhoneNumber </Text>
           </View>
           <View>
             <TextInput
               style={Styles.textinput}
-              placeholder="Enter Email"
+              placeholder="Enter PhoneNumber"
               placeholderTextColor={'#3E54AC'}
-              value={email}
+              value={phoneNo}
               autoCapitalize="none"
-              onChangeText={handleEmailChange}
-              onBlur={() => handleBlur('email')}
+              keyboardType="numeric"
+              onChangeText={handlephoneNumberChange}
+              onBlur={() => handleBlur('phoneNo')}
             />
-            {formik.touched.email && formik.errors.email && (
-              <Text style={Styles.errorText}>{formik.errors.email} </Text>
+            {formik.touched.phoneNo && formik.errors.phoneNo && (
+              <Text style={Styles.errorText}>{formik.errors.phoneNo} </Text>
             )}
           </View>
           <View>
@@ -56,31 +56,23 @@ export default function LoginScreen() {
               style={Styles.textinput}
               placeholder="Enter password"
               placeholderTextColor={'#3E54AC'}
-              value={password}
+              value={otp}
               secureTextEntry={true}
               onChangeText={handlePasswordChange}
-              onBlur={() => handleBlur('password')}
+              onBlur={() => handleBlur('otp')}
             />
-            {formik.touched.password && formik.errors.password && (
-              <Text style={Styles.errorText}>{formik.errors.password} </Text>
+            {formik.touched.otp && formik.errors.otp && (
+              <Text style={Styles.errorText}>{formik.errors.otp} </Text>
             )}
           </View>
           {passwordError.length > 0 && <Text>{passwordError}</Text>}
         </View>
         <View style={Styles.touchablebtnContainer}>
+          <TouchableOpacity style={Styles.touchablebtn} onPress={GETOTP}>
+            <Text style={Styles.touchableText}>Get OTP</Text>
+          </TouchableOpacity>
           <TouchableOpacity style={Styles.touchablebtn} onPress={handleLogin}>
             <Text style={Styles.touchableText}>Login</Text>
-          </TouchableOpacity>
-        </View>
-        <View style={Styles.sign}>
-          <Text style={Styles.signuptext}>Don't have an account? </Text>
-          <TouchableOpacity onPress={() => navigation.navigate('SignupScreen')}>
-            <Text style={Styles.signuptext}>Sign up</Text>
-          </TouchableOpacity>
-        </View>
-        <View>
-          <TouchableOpacity onPress={() => navigation.navigate('OtpScreen')}>
-            <Text style={Styles.signuptext}>Continue with OTP {'>'}</Text>
           </TouchableOpacity>
         </View>
       </View>

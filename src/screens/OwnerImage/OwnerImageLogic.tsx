@@ -1,13 +1,13 @@
 import {Image, InputAccessoryView, Text, View} from 'react-native';
 import React from 'react';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import OwnerItems from '../OwnerItems/OwnerItems';
+import Additems from '../Additems/Additems';
 import {useNavigation} from '@react-navigation/native';
 import OwnerImagestyles from './OwnerImagestyles';
 import Sizeselection from '../../components/atoms/Sizeselect';
 import {ScrollView, TextInput} from 'react-native-gesture-handler';
-import Mainbutton from '../../components/atoms/Mainbutton';
-import OwnerHome from '../Ownerhome/Ownerhome';
+import Mainbutton from '../../components/atoms/MainButton';
+import OwnerHome from '../OwnerHomepage/OwnerHome';
 import Imagepicker, {UploadImage} from '../../components/atoms/Imagepicker';
 import {OpenPicker} from '../../components/atoms/Openpicker';
 import AddImages from '../../components/atoms/AddImages';
@@ -15,13 +15,13 @@ import AddImages from '../../components/atoms/AddImages';
 export default function OwnerImageLogic() {
   const navigation = useNavigation();
   const onHandleOwnerItems = () => {
-    navigation.navigate(OwnerItems);
+    navigation.navigate(Additems);
   };
   const Onhandlepress = () => {
     navigation.navigate(OwnerHome);
   };
   return (
-    <View style={OwnerImagestyles.mainContainer}>
+    <ScrollView style={OwnerImagestyles.mainContainer}>
       <View style={OwnerImagestyles.TitletextContainer}>
         <MaterialIcons
           style={OwnerImagestyles.Icon}
@@ -55,6 +55,6 @@ export default function OwnerImageLogic() {
         </View>
         <Mainbutton onPress={Onhandlepress} text="Add Items" />
       </ScrollView>
-    </View>
+    </ScrollView>
   );
 }

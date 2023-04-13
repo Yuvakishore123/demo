@@ -4,7 +4,7 @@ import Colors from '../../constants/Colors';
 const OwnerImagestyles = StyleSheet.create({
   mainContainer: {
     height: '100%',
-    width: '100%',
+    width: 400,
     backgroundColor: Colors.main,
   },
   TitletextContainer: {

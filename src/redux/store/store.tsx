@@ -6,6 +6,7 @@ import {
 import ProductSlice from '../slice/productSlice';
 import thunk from 'redux-thunk';
 import Reducers from '../reducers/reducers';
+import authReducer from '../reducers/reducers';
 const RootReducers = combineReducers({
   // reducers
   Reducers,

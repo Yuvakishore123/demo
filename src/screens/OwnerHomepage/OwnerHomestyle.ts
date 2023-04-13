@@ -76,11 +76,16 @@ const Styles = StyleSheet.create({
     marginBottom: 20,
   },
   recentlyaddedcard: {
-    backgroundColor: Colors.main,
+    backgroundColor: Colors.white,
     borderRadius: 10,
     padding: 20,
     margin: 20,
     width: 150,
+  },
+  row: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    marginBottom: 10,
   },
   recentlyaddedimage: {
     width: 100,
@@ -92,11 +97,14 @@ const Styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
     textAlign: 'center',
+    color: Colors.iconscolor,
   },
   cardText: {
-    color: '#fff',
+    color: Colors.iconscolor,
     textAlign: 'center',
     fontWeight: 'bold',
+    height: 40,
+    width: 100,
   },
   recentlyaddedprice: {
     fontSize: 16,

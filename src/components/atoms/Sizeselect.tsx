@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {Dropdown} from 'react-native-element-dropdown';
-import Ownerstyles from '../../screens/OwnerItems/OwnerStyles';
+import Ownerstyles from '../../screens/OwnerHomepage/OwnerHomestyle';
 import Colors from '../../constants/Colors';
 import {get} from 'react-native/Libraries/TurboModule/TurboModuleRegistry';
 import axios from 'axios';
